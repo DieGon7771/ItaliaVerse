@@ -1,0 +1,9 @@
+{
+  "name": "ItaliaVerse Repository",
+  "iconUrl": "",
+  "description": "Aggiungi tutti i Repository Italiani facilmente",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://raw.githubusercontent.com/DieGon7771/ItaliaVerse/builds/plugins.json"
+  ]
+}
