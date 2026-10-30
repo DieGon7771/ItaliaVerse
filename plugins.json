@@ -1,0 +1,22 @@
+[
+    {
+        "url": "https://raw.githubusercontent.com/DieGon7771/ItaliaVerse/builds/ItaliaVerse.cs3",
+        "status": 1,
+        "version": 2,
+        "name": "ItaliaVerse",
+        "internalName": "ItaliaVerse",
+        "authors": [
+            "DieGon"
+        ],
+        "description": "Questo Plugin aggiunge tutti i Repository Italiani",
+        "fileSize": 8132,
+        "repositoryUrl": "https://github.com/DieGon7771/ItaliaVerse",
+        "language": "it",
+        "tvTypes": [
+            "Others"
+        ],
+        "iconUrl": "",
+        "apiVersion": 1,
+        "fileHash": "sha256-cefb4181901f515a4d2b189dee81ff6afe68b21e28a5b880bc0b9bda6fca2bc5"
+    }
+]
