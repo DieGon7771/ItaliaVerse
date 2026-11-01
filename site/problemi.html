@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Problemi comuni — ItaliaVerse</title>
+<meta name="description" content="Soluzioni ai problemi più comuni con CloudStream e i suoi plugin.">
+<link rel="icon" href="img/italiaverse.png">
+<script>try{var t=localStorage.getItem("theme");document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")}catch(e){document.documentElement.setAttribute("data-theme","dark")}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="layout">
+    <div class="main">
+        <header class="topbar" id="topbar"></header>
+        <div class="page">
+            <article class="doc">
+                <h1><span class="grad">Problemi comuni</span></h1>
+                <p class="lead">Prima di segnalare un problema, verifica i punti seguenti.</p>
+
+                <h2>Il plugin non funziona correttamente</h2>
+                <p>Se stai utilizzando la versione Release di CloudStream, prova a installare la versione <strong>Pre-release</strong>.</p>
+                <p>La Pre-release è generalmente più aggiornata e contiene correzioni che potrebbero non essere ancora presenti nella Release stabile.</p>
+
+                <h2>Non riesco a visualizzare la schermata home del plugin o alcune funzioni non funzionano</h2>
+                <p>Prova a cambiare DNS in <span class="path"><span>Impostazioni</span><i>→</i><span>Generali</span><i>→</i><span>DNS su HTTPS</span></span> e imposta uno dei seguenti:</p>
+                <ul>
+                    <li>Cloudflare</li>
+                    <li>AdGuard</li>
+                </ul>
+                <p>Dopo aver cambiato DNS, riavvia l'app e riprova.</p>
+
+                <h2>Un plugin è installato ma non compare nella Home</h2>
+                <p>Alcuni plugin utilizzano categorie specifiche che potrebbero non essere abilitate.</p>
+                <p>Vai in <span class="path"><span>Impostazioni</span><i>→</i><span>Provider</span><i>→</i><span>Media preferiti</span></span> e assicurati di aver selezionato tutte le categorie desiderate:</p>
+                <ul>
+                    <li>Film</li>
+                    <li>Serie TV</li>
+                    <li>Anime</li>
+                    <li>Cartoni</li>
+                    <li>Altri</li>
+                </ul>
+                <p>Successivamente verifica che le relative sezioni siano abilitate nella Home.</p>
+
+                <h2>Prima di chiedere supporto</h2>
+                <p>Verifica sempre di:</p>
+                <ul class="checks">
+                    <li>Utilizzare l'ultima versione disponibile di CloudStream</li>
+                    <li>Aver aggiornato repository e plugin</li>
+                    <li>Aver letto questa guida e le guide dei plugin speciali</li>
+                </ul>
+
+                <div class="callout info">
+                    <div class="ct"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>Nota</div>
+                    <p>Questo elenco verrà ampliato nel tempo con nuovi problemi comuni e relative soluzioni man mano che verranno individuati.</p>
+                </div>
+                <div class="pager" id="pager"></div>
+            </article>
+            <aside class="toc" id="toc"></aside>
+        </div>
+        <footer class="footer" id="footer"></footer>
+    </div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

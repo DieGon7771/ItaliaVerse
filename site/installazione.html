@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Come si installano — ItaliaVerse</title>
+<meta name="description" content="Come installare un repository in CloudStream: metodo veloce e manuale.">
+<link rel="icon" href="img/italiaverse.png">
+<script>try{var t=localStorage.getItem("theme");document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")}catch(e){document.documentElement.setAttribute("data-theme","dark")}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="layout">
+    <div class="main">
+        <header class="topbar" id="topbar"></header>
+        <div class="page">
+            <article class="doc">
+                <h1><span class="grad">Come si installano?</span></h1>
+                <p class="lead">Aggiungere un repository a CloudStream richiede un attimo: scegli il metodo che preferisci.</p>
+
+                <h2>Metodo veloce</h2>
+                <p><span class="badge step">Consigliato</span></p>
+                <p>Clicca il pulsante <strong>Installa</strong> per installare la repo direttamente nell'app.</p>
+                <div class="btn-row"><a class="btn primary" href="repository.html"><svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Vai ai repository</a></div>
+
+                <h2>Metodo manuale</h2>
+                <p>Vai in <span class="path"><span>Impostazioni</span><i>→</i><span>Estensioni</span><i>→</i><span>Aggiungi repository</span></span> e inserisci lo <strong>shortcode</strong> o il <strong>link</strong> del repository.</p>
+
+                <div class="callout tip">
+                    <div class="ct"><svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg>Dopo l’installazione</div>
+                    <p>Entra nella repo e installa i plugin che preferisci.</p>
+                </div>
+
+                <div class="callout warn">
+                    <div class="ct"><svg viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>Se alcuni non funzionano</div>
+                    <p>Prova a:</p>
+                    <ul>
+                        <li>cambiare DNS dalle impostazioni dell’app (consigliato Cloudflare o AdGuard)</li>
+                        <li>installare la versione prerelease</li>
+                        <li>aggiornare manualmente il plugin</li>
+                    </ul>
+                </div>
+                <div class="pager" id="pager"></div>
+            </article>
+            <aside class="toc" id="toc"></aside>
+        </div>
+        <footer class="footer" id="footer"></footer>
+    </div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

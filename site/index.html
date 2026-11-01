@@ -1,363 +1,75 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ItaliaVerse — MegaRepo Italiano</title>
+<title>CloudStream — ItaliaVerse</title>
+<meta name="description" content="CloudStream: cos’è, come scaricarlo e dove trovare i repository italiani.">
+<link rel="icon" href="img/italiaverse.png">
+<script>try{var t=localStorage.getItem("theme");document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")}catch(e){document.documentElement.setAttribute("data-theme","dark")}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-
-:root {
-    --bg: #06070b;
-    --card: #0b0d14;
-    --field: #10131c;
-    --line: rgba(255,255,255,0.07);
-    --text: #f2f4f8;
-    --muted: #8a93a3;
-    --faint: #586071;
-    --green: #22c55e;
-    --yellow: #eab308;
-    --red: #ef4444;
-    --beta: #38bdf8;
-}
-
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
-}
-
-body::before {
-    content: '';
-    position: fixed; inset: 0; pointer-events: none; z-index: 0;
-    background:
-        radial-gradient(ellipse 60% 40% at 80% -10%, rgba(99,102,241,0.09), transparent 70%),
-        radial-gradient(ellipse 50% 35% at 0% 100%, rgba(236,72,153,0.05), transparent 70%);
-}
-
-.wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
-
-.grad {
-    background: var(--g);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
-}
-
-/* ---------- HERO ---------- */
-.hero { text-align: center; padding: 80px 0 44px; }
-.hero .logo { width: 104px; height: 104px; object-fit: contain; margin-bottom: 18px; filter: drop-shadow(0 6px 28px rgba(80,110,255,0.35)); }
-.hero h1 { font-size: 46px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.1; }
-.hero .sub { margin-top: 10px; font-size: 18px; font-weight: 600; color: var(--muted); }
-.hero .desc { margin: 14px auto 0; max-width: 520px; font-size: 14px; color: var(--muted); }
-
-.install { margin: 28px auto 0; max-width: 560px; }
-
-/* ---------- AVATARS ---------- */
-.avatars { display: flex; justify-content: center; flex-wrap: wrap; gap: 28px 30px; padding: 12px 0 64px; }
-.avatar { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 104px; text-decoration: none; color: var(--text); }
-.ring { width: 84px; height: 84px; border-radius: 50%; padding: 3px; background: var(--g); transition: transform .25s, box-shadow .25s; }
-.ring span { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; border-radius: 50%; background: #0a0c12; overflow: hidden; }
-.ring img { width: 100%; height: 100%; object-fit: contain; }
-.ring img.pad { width: 66%; height: 66%; }
-.ring img.cover { object-fit: cover; }
-.avatar:hover .ring { transform: translateY(-4px) scale(1.04); box-shadow: 0 10px 30px -6px var(--glow); }
-.avatar b { font-size: 13px; font-weight: 600; text-align: center; line-height: 1.3; }
-.avatar small { display: block; font-size: 11px; font-weight: 500; color: var(--faint); margin-top: -1px; }
-
-/* ---------- REPO CARD ---------- */
-section.repo {
-    position: relative; overflow: hidden;
-    margin-bottom: 24px; padding: 32px 32px 28px;
-    background: var(--card); border: 1px solid var(--line); border-radius: 20px;
-    scroll-margin-top: 24px;
-}
-section.repo::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--g); opacity: .85;
-}
-section.repo::after {
-    content: ''; position: absolute; top: -120px; right: -80px; width: 320px; height: 240px; pointer-events: none;
-    background: radial-gradient(ellipse, var(--glow), transparent 70%); opacity: .13;
-}
-.head { display: flex; align-items: center; gap: 18px; position: relative; z-index: 1; }
-.head .logo { width: 64px; height: 64px; object-fit: contain; flex-shrink: 0; }
-.head .logo.round { border-radius: 50%; }
-.head h2 { font-size: 28px; font-weight: 800; letter-spacing: -0.6px; line-height: 1.15; }
-.head h2 .s { display: block; font-size: 14px; font-weight: 600; letter-spacing: 0; color: var(--muted); margin-top: 4px; -webkit-text-fill-color: var(--muted); }
-.desc2 { color: var(--muted); font-size: 14px; margin-top: 14px; position: relative; z-index: 1; }
-
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; align-items: center; position: relative; z-index: 1; }
-.chips .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .8px; color: var(--faint); font-weight: 600; margin-right: 2px; }
-.chip {
-    height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--field);
-    color: var(--text); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; cursor: pointer;
-    display: inline-flex; align-items: center; transition: border-color .2s, color .2s;
-}
-.chip:hover { border-color: var(--c); color: var(--c); }
-.chip.done { border-color: var(--green); color: var(--green); }
-
-.url-box { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; position: relative; z-index: 1; }
-.install .url-box { margin-top: 0; }
-.field {
-    flex: 1; min-width: 220px; height: 40px; border: 1px solid var(--line); border-radius: 10px; background: var(--field);
-    padding: 0 14px; display: flex; align-items: center; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; color: var(--muted);
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-.btn {
-    height: 40px; padding: 0 18px; border-radius: 10px; border: 1px solid var(--line); background: var(--field);
-    color: var(--text); font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
-    display: inline-flex; align-items: center; text-decoration: none; transition: border-color .2s, color .2s, transform .2s, filter .2s;
-}
-.btn:hover { border-color: var(--c); color: var(--c); }
-.btn.primary { background: var(--g); border: none; color: #fff; }
-.btn.primary:hover { filter: brightness(1.12); transform: translateY(-1px); color: #fff; }
-.btn.done { border-color: var(--green); color: var(--green); }
-
-.plugins-title { margin-top: 28px; font-size: 11px; text-transform: uppercase; letter-spacing: .8px; color: var(--faint); font-weight: 600; display: flex; gap: 8px; align-items: center; position: relative; z-index: 1; }
-.plugins-title .count { color: var(--muted); letter-spacing: 0; font-weight: 600; background: rgba(255,255,255,.05); padding: 1px 8px; border-radius: 999px; }
-.plugins { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; margin-top: 6px; position: relative; z-index: 1; }
-.plugin { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14px; font-weight: 500; }
-.dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: var(--faint); }
-.dot.s0 { background: var(--red); box-shadow: 0 0 8px rgba(239,68,68,.5); }
-.dot.s1 { background: var(--green); box-shadow: 0 0 8px rgba(34,197,94,.5); }
-.dot.s2 { background: var(--yellow); box-shadow: 0 0 8px rgba(234,179,8,.5); }
-.dot.s3 { background: var(--beta); box-shadow: 0 0 8px rgba(56,189,248,.5); }
-.plugin small { margin-left: auto; color: var(--faint); font-size: 12px; font-weight: 500; }
-.note { color: var(--faint); font-size: 14px; padding: 10px 0; position: relative; z-index: 1; }
-
-/* ---------- COMMUNITY ---------- */
-.community { --g: linear-gradient(135deg,#38bdf8,#3b6bff,#7c3aed); --c: #38bdf8; text-align: center; padding: 44px 24px; margin: 8px 0 8px; border: 1px solid var(--line); border-radius: 20px; background: var(--card); }
-.community h2 { display: inline-block; font-size: 26px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.2; }
-.community p { color: var(--muted); font-size: 14px; margin: 10px 0 22px; }
-.community .btn { gap: 10px; }
-.community .btn img { width: 20px; height: 20px; object-fit: contain; }
-
-/* ---------- FOOTER ---------- */
-footer { padding: 32px 0 56px; }
-.foot { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-.foot p { font-size: 13px; color: var(--faint); }
-
-@media (max-width: 640px) {
-    .hero { padding: 56px 0 32px; }
-    .hero h1 { font-size: 34px; }
-    .hero .logo { width: 84px; height: 84px; }
-    .avatars { gap: 22px 8px; padding-bottom: 44px; }
-    .avatar { width: 108px; }
-    .avatar b { font-size: 12px; }
-    .ring { width: 76px; height: 76px; }
-    section.repo { padding: 26px 20px 22px; border-radius: 16px; }
-    .head .logo { width: 52px; height: 52px; }
-    .head h2 { font-size: 22px; }
-    .plugins { grid-template-columns: 1fr; }
-    .foot { flex-direction: column; align-items: flex-start; }
-}
-</style>
+<link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
-<div class="wrap">
-    <main id="app"></main>
+<body data-no-pager>
+<div class="layout">
+    <div class="main">
+        <header class="topbar" id="topbar"></header>
+        <div class="page">
+            <article class="doc">
+                <h1><span class="grad">CloudStream</span></h1>
+                <p class="lead">L'app Android gratuita e open source per guardare film, serie TV e anime, senza pubblicità.</p>
 
-    <section class="community" id="community">
-        <h2 class="grad">Community Italiana CloudStream</h2>
-        <p>Entra nel gruppo Telegram per aggiornamenti, supporto e novità.</p>
-        <a class="btn primary" href="https://t.me/cloudstream_italia" target="_blank" rel="noopener"><img src="img/telegram.png" alt="">Unisciti su Telegram</a>
-    </section>
+                <div class="callout warn">
+                    <div class="ct"><svg viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>Importante</div>
+                    <p>Le estensioni funzionano come un normale browser: recuperano esclusivamente contenuti pubblicamente disponibili su Internet.</p>
+                    <p>Nessun contenuto è ospitato o distribuito da questo progetto o dall’applicazione CloudStream.</p>
+                    <p>Tutti i contenuti provengono da siti di terze parti, sui quali non abbiamo alcun controllo.</p>
+                    <p>Gli utenti sono gli unici responsabili del proprio utilizzo e devono rispettare le leggi vigenti.</p>
+                    <p>Per segnalazioni di copyright, contattare direttamente il sito di origine.</p>
+                </div>
 
-    <footer>
-        <div class="foot">
-            <p>&copy; <span id="year"></span> DieGon &mdash; Non affiliato a CloudStream.</p>
+                <h2>CloudStream: cos'è?</h2>
+                <p>CloudStream è un'applicazione Android <strong>gratuita</strong> e <strong>open source</strong>, basata su repository, progettata per lo streaming di film, serie TV e anime senza pubblicità.</p>
+                <p>Funziona come un <strong>aggregatore</strong>: per funzionare richiede l'installazione di estensioni esterne, che permettono la ricerca e la riproduzione da varie fonti.</p>
+
+                <h2>Download CloudStream</h2>
+                <p>Scarica l'app dalla pagina ufficiale su GitHub, scegliendo tra la versione stabile e la pre-release. Se usi il Downloader, trovi qui i codici.</p>
+                <div class="dl">
+                    <div class="box">
+                        <div class="top"><img src="img/stable.png" alt=""><div><b>Release</b><small>Versione stabile</small></div></div>
+                        <div class="label">Codice Downloader</div>
+                        <span class="code code-big">250931</span>
+                        <p>Scorrendo dovresti trovare CloudStream.</p>
+                        <a class="btn stable" href="https://github.com/recloudstream/cloudstream/releases/latest" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Scarica la Release</a>
+                    </div>
+                    <div class="box">
+                        <div class="top"><img src="img/pre.png" alt=""><div><b>Pre-release</b><small>Più aggiornata · consigliata</small></div></div>
+                        <div class="label">Codice Downloader</div>
+                        <span class="code code-big">532423</span>
+                        <p>Download diretto.</p>
+                        <a class="btn pre" href="https://github.com/recloudstream/cloudstream/releases/pre-release" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Scarica la Pre-release</a>
+                    </div>
+                </div>
+
+                <div class="callout tip">
+                    <div class="ct"><svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg>Consiglio</div>
+                    <p>È consigliata la versione <strong>pre-release</strong>, perché viene aggiornata più frequentemente rispetto alla versione stabile.</p>
+                </div>
+
+                <h2>Repository CloudStream</h2>
+                <p>Una volta installata l'app, servono i repository per aggiungere le estensioni. Qui trovi tutti quelli italiani e la guida per installarli.</p>
+                <div class="cards">
+                    <a class="card-link" href="repository.html"><b><img class="ico" src="img/plugin.png" alt="">ItaliaVerse - list of extension</b><span>Tutti i repository disponibili, con shortcode, installazione diretta e lista dei plugin.</span></a>
+                    <a class="card-link" href="installazione.html"><b><svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Come si installano?</b><span>Metodo veloce con un clic oppure inserimento manuale dello shortcode.</span></a>
+                </div>
+                <div class="pager" id="pager"></div>
+            </article>
+            <aside class="toc" id="toc"></aside>
         </div>
-    </footer>
+        <footer class="footer" id="footer"></footer>
+    </div>
 </div>
-
-<script>
-/*
-  shortcodes : lista di shortcode CloudStream (può essere vuota)
-  url        : link repo.json da aggiungere in CloudStream
-  plugins    : link a plugins.json oppure a un repo.json (in quel caso segue i suoi pluginLists)
-  g / c / glow : gradiente del titolo, colore accento, colore dell'alone
-*/
-const HOME = {
-    name: 'ItaliaVerse',
-    subtitle: 'MegaRepo Italiano',
-    logo: 'img/italiaverse.png',
-    desc: 'Un unico plugin che aggiunge tutti i repository italiani a CloudStream.',
-    shortcodes: ['itaverse'],
-    url: 'https://raw.githubusercontent.com/DieGon7771/ItaliaVerse/main/repo.json',
-    github: 'https://github.com/DieGon7771/ItaliaVerse',
-    g: 'linear-gradient(135deg,#38bdf8,#3b6bff,#7c3aed)',
-    c: '#6d8bff',
-    glow: '#3b6bff'
-};
-
-const REPOS = [
-    {
-        id: 'dogiorhadenough',
-        name: 'DogiorHadEnough',
-        logo: 'img/dogior.png',
-        desc: '',
-        shortcodes: ['dogior', '1740'],
-        url: 'https://raw.githubusercontent.com/doGior/doGiorsHadEnough/builds/repo.json',
-        github: 'https://github.com/doGior/doGiorsHadEnough',
-        plugins: 'https://raw.githubusercontent.com/doGior/doGiorsHadEnough/builds/plugins.json',
-        g: 'linear-gradient(135deg,#fde047,#fb923c,#ef4444)',
-        c: '#fb923c',
-        glow: '#fb923c'
-    },
-    {
-        id: 'italiainstreaming',
-        name: 'ItaliaInStreaming',
-        subtitle: 'DieGon Repository',
-        logo: 'img/italiainstreaming.png',
-        desc: '',
-        shortcodes: ['diegon7', '865'],
-        url: 'https://raw.githubusercontent.com/DieGon7771/ItaliaInStreaming/builds/repo.json',
-        plugins: 'https://raw.githubusercontent.com/DieGon7771/ItaliaInStreaming/builds/plugins.json',
-        github: 'https://github.com/DieGon7771/ItaliaInStreaming',
-        g: 'linear-gradient(135deg,#22d3ee,#6366f1,#a855f7,#ec4899,#f97316)',
-        c: '#a855f7',
-        glow: '#a855f7'
-    },
-    {
-        id: 'prisynx',
-        name: 'PriSynx',
-        logo: 'img/prisynx.png',
-        round: true,
-        desc: '',
-        shortcodes: ['prisynx'],
-        url: 'https://raw.githubusercontent.com/qwertyuiop8899/prisynx_cs3/main/center.json',
-        github: 'https://github.com/qwertyuiop8899/PriSynx',
-        plugins: 'https://raw.githubusercontent.com/qwertyuiop8899/prisynx_cs3/main/center.json',
-        g: 'linear-gradient(135deg,#e879f9,#a855f7,#6d28d9)',
-        c: '#c084fc',
-        glow: '#a855f7'
-    },
-    {
-        id: 'prisynx-singoli',
-        name: 'PriSynx',
-        subtitle: 'plugin singoli',
-        logo: 'img/prisynx.png',
-        round: true,
-        desc: '',
-        shortcodes: [],
-        url: 'https://raw.githubusercontent.com/qwertyuiop8899/prisynx_cs3/main/singoli.json',
-        github: 'https://github.com/qwertyuiop8899/PriSynx',
-        plugins: 'https://raw.githubusercontent.com/qwertyuiop8899/prisynx_cs3/main/singoli.json',
-        g: 'linear-gradient(135deg,#f0abfc,#c084fc,#818cf8)',
-        c: '#c4b5fd',
-        glow: '#818cf8'
-    }
-];
-
-const AVATAR_IMG_CLASS = { dogiorhadenough: 'pad', italiainstreaming: 'pad', prisynx: 'cover', 'prisynx-singoli': 'cover' };
-
-const STATUS = { 0: 'Disattivato', 1: 'In funzione', 2: 'Lento', 3: 'Beta' };
-const INSTALL_HELPER = 'https://diegon7771.github.io/Cs-site/?r=';
-
-function esc(s) {
-    const d = document.createElement('div');
-    d.textContent = s == null ? '' : String(s);
-    return d.innerHTML;
-}
-function vars(r) { return '--g:' + r.g + ';--c:' + r.c + ';--glow:' + r.glow + ';'; }
-function installLink(url) { return INSTALL_HELPER + 'cloudstreamrepo://' + url.replace(/^https?:\/\//, ''); }
-function copyBtn(text, label) { return '<button class="btn" data-copy="' + esc(text) + '">' + (label || 'Copia') + '</button>'; }
-function installBtn(url) { return '<a class="btn primary" href="' + esc(installLink(url)) + '" target="_blank" rel="noopener">Installa</a>'; }
-function chips(list) {
-    if (!list || !list.length) return '';
-    return '<div class="chips"><span class="lbl">Shortcode</span>'
-        + list.map(s => '<button class="chip" data-copy="' + esc(s) + '" title="Copia">' + esc(s) + '</button>').join('')
-        + '</div>';
-}
-function urlBox(r) {
-    if (!r.url) return '';
-    return '<div class="url-box"><div class="field">' + esc(r.url) + '</div>' + copyBtn(r.url) + installBtn(r.url)
-        + (r.github ? '<a class="btn" href="' + esc(r.github) + '" target="_blank" rel="noopener">GitHub</a>' : '') + '</div>';
-}
-
-function renderHome() {
-    return '<header class="hero" style="' + vars(HOME) + '">'
-        + '<img class="logo" src="' + HOME.logo + '" alt="ItaliaVerse">'
-        + '<h1 class="grad">' + esc(HOME.name) + '</h1>'
-        + '<p class="sub">' + esc(HOME.subtitle) + '</p>'
-        + '<p class="desc">' + esc(HOME.desc) + '</p>'
-        + '<div class="install">' + urlBox(HOME) + chips(HOME.shortcodes).replace('class="chips"', 'class="chips" style="justify-content:center"') + '</div>'
-        + '</header>'
-        + '<nav class="avatars">' + REPOS.map(r =>
-            '<a class="avatar" href="#' + r.id + '" style="' + vars(r) + '">'
-            + '<div class="ring"><span><img class="' + (AVATAR_IMG_CLASS[r.id] || '') + '" src="' + r.logo + '" alt=""></span></div>'
-            + '<b>' + esc(r.name) + (r.subtitle ? '<small>' + esc(r.subtitle) + '</small>' : '') + '</b></a>'
-        ).join('') + '</nav>';
-}
-
-function renderRepo(r) {
-    return '<section class="repo" id="' + r.id + '" style="' + vars(r) + '">'
-        + '<div class="head"><img class="logo' + (r.round ? ' round' : '') + '" src="' + esc(r.logo) + '" alt="">'
-        + '<h2><span class="grad">' + esc(r.name) + '</span>' + (r.subtitle ? '<span class="s">' + esc(r.subtitle) + '</span>' : '') + '</h2></div>'
-        + (r.desc ? '<p class="desc2">' + esc(r.desc) + '</p>' : '')
-        + chips(r.shortcodes) + urlBox(r)
-        + '<div class="plugins-title">Plugin <span class="count" id="count-' + r.id + '" hidden></span></div>'
-        + '<div id="plugins-' + r.id + '"><p class="note">' + (r.plugins ? 'Caricamento…' : 'Lista plugin in arrivo.') + '</p></div>'
-        + '</section>';
-}
-
-async function getJson(url) {
-    const res = await fetch(url, { cache: 'no-cache' });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    return res.json();
-}
-
-async function loadPluginList(url) {
-    const data = await getJson(url);
-    if (Array.isArray(data)) return data;
-    if (data && Array.isArray(data.pluginLists)) {
-        const lists = await Promise.all(data.pluginLists.map(u => getJson(u).catch(() => [])));
-        return lists.flat();
-    }
-    return [];
-}
-
-function loadPlugins(r) {
-    if (!r.plugins) return;
-    const box = document.getElementById('plugins-' + r.id);
-    const count = document.getElementById('count-' + r.id);
-    loadPluginList(r.plugins).then(list => {
-        const seen = new Set();
-        list = list.filter(p => p && p.name && !seen.has(p.name) && seen.add(p.name));
-        if (!list.length) { box.innerHTML = '<p class="note">Nessun plugin trovato.</p>'; return; }
-        list.sort((a, b) => String(a.name).localeCompare(String(b.name)));
-        count.textContent = list.length; count.hidden = false;
-        box.innerHTML = '<div class="plugins">' + list.map(p => {
-            const known = STATUS[p.status] !== undefined;
-            return '<div class="plugin"><span class="dot' + (known ? ' s' + p.status : '') + '"></span><span>' + esc(p.name) + '</span>'
-                + (known ? '<small>' + STATUS[p.status] + '</small>' : '') + '</div>';
-        }).join('') + '</div>';
-    }).catch(() => { box.innerHTML = '<p class="note">Lista plugin non disponibile.</p>'; });
-}
-
-document.getElementById('app').innerHTML = renderHome() + REPOS.map(renderRepo).join('');
-REPOS.forEach(loadPlugins);
-document.getElementById('year').textContent = new Date().getFullYear();
-
-document.addEventListener('click', async e => {
-    const b = e.target.closest('[data-copy]');
-    if (!b) return;
-    const text = b.getAttribute('data-copy');
-    try { await navigator.clipboard.writeText(text); }
-    catch {
-        const t = document.createElement('textarea');
-        t.value = text; document.body.appendChild(t); t.select();
-        document.execCommand('copy'); t.remove();
-    }
-    const old = b.textContent;
-    b.textContent = 'Copiato!'; b.classList.add('done');
-    setTimeout(() => { b.textContent = old; b.classList.remove('done'); }, 1800);
-});
-</script>
+<script src="assets/app.js"></script>
 </body>
 </html>
